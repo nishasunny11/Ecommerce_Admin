@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Users</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f5;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.container {
+	background: #fff;
+	padding: 2em;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	max-width: 400px;
+	width: 100%;
+	margin: 1em;
+}
+
+h1 {
+	margin-top: 0;
+	color: #333;
+	text-align: center;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	margin-top: 1em;
+	color: #555;
+}
+
+input {
+	padding: 0.5em;
+	margin-top: 0.5em;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+button {
+	margin-top: 1em;
+	padding: 0.7em;
+	background-color: #28a745;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #218838;
+}
+
+a {
+	color: #007bff;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	margin-top: 1em;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+li {
+	background: #eee;
+	margin: 0.5em 0;
+	padding: 0.5em;
+	border-radius: 4px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>All Users</h1>
+		<ul>
+			<th:block th:each="user : ${users}">
+				<li th:text="${user.username}">User</li>
+			</th:block>
+		</ul>
+		<a href="/">Back</a>
+	</div>
+</body>
+</html>

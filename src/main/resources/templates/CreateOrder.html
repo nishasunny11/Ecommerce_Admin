@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Order - ECommerce Application</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+        h1 {
+            color: #343a40;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Create Order</h1>
+        <hr />
+        <form th:action="@{/saveOrder}" th:object="${newOrder}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="customerName"><b>Customer Name</b></label>
+                <input type="text" id="customerName" name="CustomerName" th:field="*{customer_name}" class="form-control" placeholder="Enter Customer Name"/>
+            </div>
+            <div class="form-group">
+                <label for="orderPrice"><b>Order Price</b></label>
+                <input type="number" id="orderPrice" name="orderPrice" th:field="*{order_price}" class="form-control" placeholder="Enter Order Price"/>
+            </div>
+            <div class="form-group">
+                <label for="orderDate"><b>Order Date</b></label>
+                <input type="date" id="orderDate" name="orderDate" th:field="*{order_date}" class="form-control" placeholder="Enter Order Date"/>
+            </div>
+            <div class="form-group">
+                <label for="paymentStatus"><b>Payment Status</b></label>
+                <select id="paymentStatus" name="PaymentStatus" th:field="*{payment_status}" class="form-control">
+                    <option value="Paid">Paid</option>
+                    <option value="Cash On Delivery">Cash On Delivery</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="orderStage"><b>Order Stage</b></label>
+                <select id="orderStage" name="OrderStage" th:field="*{order_stage}" class="form-control">
+                    <option value="Processing">Processing</option>
+                    <option value="In Shipment">In Shipment</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="reset" class="btn btn-secondary">Discard</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

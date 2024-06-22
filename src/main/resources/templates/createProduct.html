@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ECommerce Application</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" 
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+          crossorigin="anonymous">
+    <style>
+        .form-container {
+            margin-top: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-title {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1 class="form-title">Create Product</h1>
+            <form th:action="@{/saveProduct}" th:object="${productsadd}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label><b>Product Name</b></label>
+                    <input type="text" name="productName" th:field="*{product_name}" class="form-control" 
+                           placeholder="Enter Product Name" required />
+                </div>
+                <div class="form-group">
+                    <label><b>Product Price</b></label>
+                    <input type="number" name="productPrice" th:field="*{product_price}" class="form-control" 
+                           placeholder="Enter Product Price" required />
+                </div>
+                <div class="form-group">
+                    <label><b>Product Description</b></label>
+                    <textarea name="productDescription" th:field="*{product_description}" class="form-control" 
+                              placeholder="Enter Product Description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label><b>Product Category</b></label>
+                    <select name="productCategory" th:field="*{product_category}" class="form-control" required>
+                        <option th:each="category : ${categories}" th:value="${category.category_id}" th:text="${category.category_name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><b>Product Image</b></label>
+                    <input id="input-file" type="file" name="file" accept="image/png, image/jpg" class="form-control-file" required />
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" name="available" th:field="*{available}" class="form-check-input" id="availableCheck" />
+                    <label class="form-check-label" for="availableCheck"><b>Available?</b></label>
+                </div>
+                <div class="text-right">
+                    <button type="reset" class="btn btn-secondary">Discard</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
